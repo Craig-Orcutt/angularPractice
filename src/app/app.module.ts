@@ -3,11 +3,16 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
 import { EntryListComponent, EntryComponent, EntryService } from "./entries";
 import { HttpModule } from "@angular/http";
-
+import { InMemoryWebApiModule } from "angular-in-memory-web-api";
+import { InMemoryEntryService } from "./backend";
 @NgModule({
-  imports: [BrowserModule, HttpModule],
-  providers:[EntryService],
-  declarations: [AppComponent, EntryComponent, EntryListComponent,],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(InMemoryEntryService)
+  ],
+  providers: [EntryService],
+  declarations: [AppComponent, EntryComponent, EntryListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
